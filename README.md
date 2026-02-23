@@ -27,9 +27,9 @@ A simple and intuitive web app that helps users track their daily habits and mai
 ---
 ## Tech Stack
 
-- 1.Frontend: React.js, Material UI,
+- 1.Frontend: React.js, Material UI,Typescript
 - 2.State Management: Zustand
-- 3.Data Storage: Local Storage
+- 3.Data Storage: Local Storage using Zustand 
 - 4.Icons: Material UI Icons
 
 ---
