@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+## Habit Tracker Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and intuitive web app that helps users track their daily habits and maintain streaks. Add habits, mark them as completed, and monitor your progress to stay consistent and motivated!
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Add and manage daily or weekly habits
+- Mark habits as completed
+- Track streaks and progress over time
+- Responsive and user-friendly interface
+- Persistent data storage using local storage (or Zustand)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 1.Frontend: React.js, Material UI,
+- 2.State Management: Zustand
+- 3.Data Storage: Local Storage
+- 4.Icons: Material UI Icons
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository:  
+
+git clone https://github.com/your-username/habit-tracker.git
+
+## Run Project 
+
+1.install npm 
+  npm install
+
+2. npm run dev 
+
+Usage of Website : 
+
+-Add a new habit by entering a name and choosing the frequency (daily/weekly).
+-Mark habits as completed by clicking the check icon.
+-Monitor your streaks and progress over time.
+-Remove habits you no longer want to track
+
+Folder Structure 
+
+habit-tracker/
+├─ src/
+│  ├─ components/   # React components (Form, List, etc.)
+│  ├─ store/        # Zustand store for state management
+│  ├─ App.tsx       # Main app component
+│  └─ index.tsx     # Entry point
+├─ public/
+├─ package.json
+└─ README.md
+
+Upcoming Features ->>>
+1.Add notifications/reminders for habits
+2.Sync data with backend for multiple devices (using zustand)
+3.Add analytics & charts for progress visualization
+4.Dark mode toggle
