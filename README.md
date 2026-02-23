@@ -15,6 +15,12 @@ A simple and intuitive web app that helps users track their daily habits and mai
 ---
 
 ## Demo
+<img width="769" height="425" alt="image" src="https://github.com/user-attachments/assets/bfbb1a0e-5002-4ec4-bff1-290320bf0419" />
+<img width="1333" height="633" alt="image" src="https://github.com/user-attachments/assets/93208aa5-a30c-4e20-afda-1bebe63707fe" />
+<img width="294" height="493" alt="image" src="https://github.com/user-attachments/assets/13c9a8c1-8004-431c-ae12-84048be19e73" />
+
+
+
 
 
 
