@@ -15,7 +15,7 @@ import useHabitStore from "../store/store";
 const Form = () => {
   const [name, setName] = useState("");
   const [frequency, setfrequency] = useState<"daily" | "weekly">("daily");
-  const { habits, addHabit } = useHabitStore();
+  const {  addHabit } = useHabitStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
