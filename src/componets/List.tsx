@@ -10,20 +10,24 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import useHabitStore from "../store/store";
+import type { Habit } from "../store/store"; // Make sure your Habit interface is exported
+ // Make sure your Habit interface is exported
 
-const List = () => {
+const List: React.FC = () => {
   const { habits, removeHabit, toggleHabit } = useHabitStore();
   const today = new Date().toISOString().split("T")[0];
 
-  const completedToday = habits.reduce((acc, habit) => {
+  // Count completed habits today
+  const completedToday: number = habits.reduce((acc: number, habit: Habit) => {
     if (habit.completionData.includes(today)) acc += 1;
     return acc;
   }, 0);
 
-  const getLongestStreak = () => {
+  // Longest streak among all habits
+  const getLongestStreak = (): number => {
     let maxStreak = 0;
 
-    habits.forEach((habit) => {
+    habits.forEach((habit: Habit) => {
       if (habit.completionData.length === 0) return;
 
       const sortedDates = [...habit.completionData].sort();
@@ -32,9 +36,7 @@ const List = () => {
       for (let i = 1; i < sortedDates.length; i++) {
         const prev = new Date(sortedDates[i - 1]);
         const curr = new Date(sortedDates[i]);
-
-        const diff =
-          (curr.getTime() - prev.getTime()) / (1000 * 60 * 60 * 24);
+        const diff = (curr.getTime() - prev.getTime()) / (1000 * 60 * 60 * 24);
 
         currentStreak = diff === 1 ? currentStreak + 1 : 1;
         maxStreak = Math.max(maxStreak, currentStreak);
@@ -46,7 +48,8 @@ const List = () => {
     return maxStreak;
   };
 
-  const getStreak = (habit: any) => {
+  // Current streak for a habit
+  const getStreak = (habit: Habit): number => {
     const currentDate = new Date();
     let streak = 0;
 
@@ -63,8 +66,8 @@ const List = () => {
 
   return (
     <Box sx={{ mt: 4, display: "flex", flexDirection: "column", gap: 3 }}>
-      {habits.map((habit) => {
-        const streak = getStreak(habit);
+      {habits.map((habit: Habit) => {
+        const streak: number = getStreak(habit);
 
         return (
           <Paper
@@ -72,13 +75,17 @@ const List = () => {
             sx={{
               p: 3,
               borderRadius: 3,
-              background:
-                "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)",
+              background: "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)",
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
             }}
           >
-            <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
-              <Grid item xs={12} sm={6}>
+            <Grid
+              container
+              alignItems="center"
+              justifyContent="space-between"
+              spacing={2}
+            >
+              <Grid  xs={12} sm={6}>
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: 700, letterSpacing: 0.5 }}
@@ -97,7 +104,7 @@ const List = () => {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid  xs={12} sm={6}>
                 <Box
                   sx={{
                     display: "flex",
@@ -109,17 +116,13 @@ const List = () => {
                   <Button
                     variant="contained"
                     color={
-                      habit.completionData.includes(today)
-                        ? "success"
-                        : "primary"
+                      habit.completionData.includes(today) ? "success" : "primary"
                     }
                     startIcon={<CheckCircleIcon />}
                     onClick={() => toggleHabit(habit.id, today)}
                     sx={{ borderRadius: 2 }}
                   >
-                    {habit.completionData.includes(today)
-                      ? "Completed"
-                      : "Mark"}
+                    {habit.completionData.includes(today) ? "Completed" : "Mark"}
                   </Button>
 
                   <Button
@@ -156,8 +159,7 @@ const List = () => {
                   backgroundColor: "#e0e0e0",
                   "& .MuiLinearProgress-bar": {
                     borderRadius: 5,
-                    background:
-                      "linear-gradient(90deg, #00c853, #64dd17)",
+                    background: "linear-gradient(90deg, #00c853, #64dd17)",
                   },
                 }}
               />
