@@ -1,17 +1,10 @@
-import {
-  Box,
-  Paper,
-  Grid,
-  Typography,
-  Button,
-  LinearProgress,
-} from "@mui/material";
+import { Box, Paper, Typography, Button, LinearProgress } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import useHabitStore from "../store/store";
 import type { Habit } from "../store/store"; // Make sure your Habit interface is exported
- // Make sure your Habit interface is exported
+// Make sure your Habit interface is exported
 
 const List: React.FC = () => {
   const { habits, removeHabit, toggleHabit } = useHabitStore();
@@ -79,13 +72,17 @@ const List: React.FC = () => {
               boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
             }}
           >
-            <Grid
-              container
-              alignItems="center"
-              justifyContent="space-between"
-              spacing={2}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 2,
+              }}
             >
-              <Grid  xs={12} sm={6}>
+              {/* Left side */}
+              <Box sx={{ flex: 1 }}>
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: 700, letterSpacing: 0.5 }}
@@ -102,41 +99,41 @@ const List: React.FC = () => {
                 >
                   {habit.frequency}
                 </Typography>
-              </Grid>
+              </Box>
 
-              <Grid  xs={12} sm={6}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    gap: 1,
-                    flexWrap: "wrap",
-                  }}
+              {/* Right side */}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: { xs: "flex-start", sm: "flex-end" },
+                  gap: 1,
+                  flexWrap: "wrap",
+                  mt: { xs: 1, sm: 0 }, // small margin top for mobile spacing
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color={
+                    habit.completionData.includes(today) ? "success" : "primary"
+                  }
+                  startIcon={<CheckCircleIcon />}
+                  onClick={() => toggleHabit(habit.id, today)}
+                  sx={{ borderRadius: 2 }}
                 >
-                  <Button
-                    variant="contained"
-                    color={
-                      habit.completionData.includes(today) ? "success" : "primary"
-                    }
-                    startIcon={<CheckCircleIcon />}
-                    onClick={() => toggleHabit(habit.id, today)}
-                    sx={{ borderRadius: 2 }}
-                  >
-                    {habit.completionData.includes(today) ? "Completed" : "Mark"}
-                  </Button>
+                  {habit.completionData.includes(today) ? "Completed" : "Mark"}
+                </Button>
 
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    startIcon={<DeleteIcon />}
-                    onClick={() => removeHabit(habit.id)}
-                    sx={{ borderRadius: 2 }}
-                  >
-                    Remove
-                  </Button>
-                </Box>
-              </Grid>
-            </Grid>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  startIcon={<DeleteIcon />}
+                  onClick={() => removeHabit(habit.id)}
+                  sx={{ borderRadius: 2 }}
+                >
+                  Remove
+                </Button>
+              </Box>
+            </Box>
 
             {/* Streak Section */}
             <Box sx={{ mt: 3 }}>
